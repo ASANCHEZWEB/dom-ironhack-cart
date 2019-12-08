@@ -3,22 +3,24 @@ let product = document.querySelectorAll(".product");
 let precioUnitario = document.getElementsByClassName("pu");
 let tomarInput = document.getElementsByClassName("qty");
 let subTotales = document.getElementsByClassName("subtot");
+let botonCalcPrices = document.querySelector(".calcButton");
+let contador = document.querySelector(".precioTotal");
 
-
-
-let updateSubtot = (product) => {
-let totalSuma = 0;
-   for (i = 0; i < product.length; i++) {
-    let total = precioUnitario[i].childNodes[1].innerHTML *
+let updateSubtot = product => {
+  let totalSuma = 0;
+  for (i = 0; i < product.length; i++) {
+    let total =
+      precioUnitario[i].childNodes[1].innerHTML *
       tomarInput[i].childNodes[1].childNodes[1].value;
     subTotales[i].childNodes[1].innerHTML = total;
-    totalSuma+=total;
+    totalSuma += total;
   }
-    return totalSuma;
-  };
+  return totalSuma;
+};
 
-  function  calcAll () {
-    // Iteration 1.2 
- } $ calc . onclick = calcAll;
-// mi funcion updatesubtot ya funciona 
+let calcAll = () => {
+  contador.innerHTML = `Total : ${updateSubtot(product)}`;
+  return;
+};
 
+botonCalcPrices.addEventListener("click", calcAll);
