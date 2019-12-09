@@ -1,7 +1,11 @@
+//DECLARACIONES
 let $product = document.querySelectorAll(".product");
 let $calc = document.querySelector(".btn-calcprices");
+let $delete = document.querySelectorAll(".btn-delete");
 
-function updateSubtot($product) {
+
+//FUNCIONES
+let updateSubtot = $product => {
   let sumOfSubtotals = 0;
   for (i = 0; i < $product.length; i++) {
     let subTot =
@@ -11,9 +15,18 @@ function updateSubtot($product) {
     $product[i].getElementsByClassName("subtot")[0].childNodes[1].innerHTML = subTot;
   }
   return sumOfSubtotals;
-}
-function calcAll() {
-  // Iteration 1.2
+};
+let calcAll = () => {
   document.getElementsByClassName("totalPrices")[0].innerHTML = `Total : $${updateSubtot($product)}`;
-}
-$calc.onclick = calcAll;
+};
+let functionDelete = $delete => {
+  for (let i = 0; i < $delete.length; i++) {
+    $delete[i].onclick = function() {
+      document.getElementsByTagName("tbody")[0].removeChild($product[i]);
+    }
+  }
+};
+
+//EVENTOS E INVOCACIONES
+functionDelete($delete);
+$calc.onclick = calcAll ;
