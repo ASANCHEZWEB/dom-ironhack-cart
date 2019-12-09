@@ -1,37 +1,19 @@
-let product = document.querySelectorAll(".product");
-let precioUnitario = document.getElementsByClassName("pu");
-let tomarInput = document.getElementsByClassName("qty");
-let subTotales = document.getElementsByClassName("subtot");
-let botonCalcPrices = document.querySelector(".calcButton");
-let contador = document.querySelector(".precioTotal");
-var $del = document.getElementsByClassName("btn btn-delete");
+let $product = document.querySelectorAll(".product");
+let $calc = document.querySelector(".btn-calcprices");
 
-let updateSubtot = product => {
-  let totalSuma = 0;
-  for (i = 0; i < product.length; i++) {
-    let total =
-      precioUnitario[i].childNodes[1].innerHTML *
-      tomarInput[i].childNodes[1].childNodes[1].value;
-    subTotales[i].childNodes[1].innerHTML = total;
-    totalSuma += total;
+function updateSubtot($product) {
+  let sumOfSubtotals = 0;
+  for (i = 0; i < $product.length; i++) {
+    let subTot =
+      $product[i].getElementsByClassName("pu")[0].childNodes[1].innerHTML *
+      $product[i].getElementsByClassName("qty")[0].getElementsByTagName("input")[0].value;
+    sumOfSubtotals += subTot;
+    $product[i].getElementsByClassName("subtot")[0].childNodes[1].innerHTML = subTot;
   }
-  return totalSuma;
-};
-
-let calcAll = () => {
-  contador.innerHTML = `Total : ${updateSubtot(product)}`;
-  return;
-};
-botonCalcPrices.addEventListener("click", calcAll);
-
-function deleteBoton(e) {
-  var product = e.currentTarget.parentNode.parentNode;
-  var table = e.currentTarget.parentNode.parentNode.parentNode;
-  table.removeChild(product);
+  return sumOfSubtotals;
 }
-function loadDeleteButtons() {
-  for (var i = 0; i < $del.length; i++) {
-    $del[i].addEventListener("click", deleteBoton);
-  }
+function calcAll() {
+  // Iteration 1.2
+  document.getElementsByClassName("totalPrices")[0].innerHTML = `Total : $${updateSubtot($product)}`;
 }
-loadDeleteButtons();
+$calc.onclick = calcAll;
