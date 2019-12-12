@@ -1,32 +1,26 @@
-//DECLARACIONES
+let $cart = document.querySelector("#cart tbody");
+let $calc = document.getElementById("calc");
 let $product = document.querySelectorAll(".product");
-let $calc = document.querySelector(".btn-calcprices");
-let $delete = document.querySelectorAll(".btn-delete");
-
-
-//FUNCIONES
-let updateSubtot = $product => {
-  let sumOfSubtotals = 0;
+//FUNCIONES 
+let updateSubtot = () => {
+  let sumOfTotal = 0;
+  //recorro los productos para actualizar su subtotal
   for (i = 0; i < $product.length; i++) {
-    let subTot =
-      $product[i].getElementsByClassName("pu")[0].childNodes[1].innerHTML *
-      $product[i].getElementsByClassName("qty")[0].getElementsByTagName("input")[0].value;
-    sumOfSubtotals += subTot;
-    $product[i].getElementsByClassName("subtot")[0].childNodes[1].innerHTML = subTot;
+    //busco el precio unitario del producto recorrido por el bucle
+   let unitPrice =$product[i].querySelectorAll('.pu')[0].getElementsByTagName('span')[0].innerHTML;
+   //busco el valor del input del producto (donde se mete la cantidad de producto que se quiere comprar)
+   let quantity = $product[i].querySelectorAll('.qty')[0].getElementsByTagName('input')[0].value;
+   //simplemente le digo al subtotal del producto que sea igual al preciounitario multiplicado por la cantidad.
+   let subTotCalc = $product[i].querySelectorAll('.subtot')[0].getElementsByTagName('span')[0].innerHTML = unitPrice * quantity;
+   sumOfTotal += subTotCalc;
   }
-  return sumOfSubtotals;
+  return sumOfTotal;
 };
-let calcAll = () => {
-  document.getElementsByClassName("totalPrices")[0].innerHTML = `Total : $${updateSubtot($product)}`;
-};
-let functionDelete = $delete => {
-  for (let i = 0; i < $delete.length; i++) {
-    $delete[i].onclick = function() {
-      document.getElementsByTagName("tbody")[0].removeChild($product[i]);
-    }
-  }
-};
-
-//EVENTOS E INVOCACIONES
-functionDelete($delete);
-$calc.onclick = calcAll ;
+let  calcAll = () => {
+  //como la funcion updatetotal ya me devuelve la suma de los subtotales , pues ahora solo voy a tomarlo .
+  document.getElementsByTagName('h2')[0].innerHTML = `Total: $<span>${updateSubtot()}</span>`;
+}
+//EVENTOS E INVOCACIONES 
+$calc.onclick = calcAll;
+//este setinterval actualizará el subtotal de cada producto cada 200 milisegundos.
+setInterval(updateSubtot, 200);

@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Ironhack cart</title>
 </head>
-
 <body>
+  <h1>Ironhack Cart</h1>
 
   <table id="cart">
     <thead>
@@ -24,61 +21,75 @@
     <tbody>
       <tr class="product">
         <td class="name">
-          <span>IronBubble</span>
+          <span>IronBubble-head</span>
         </td>
-
+    
         <td class="pu">
-          $<span>100.00</span>
+          $<span>25.00</span>
         </td>
-
+    
         <td class="qty">
           <label>
             <input type="number" value="0" min="0">
           </label>
         </td>
-
+    
         <td class="subtot">
           $<span>0</span>
         </td>
-
+    
         <td class="rm">
           <button class="btn btn-delete">Delete</button>
         </td>
       </tr>
-      <tr class="product">
+       <tr class="product">
         <td class="name">
-          <span>IronCurso</span>
+          <span>IronBubble-head</span>
         </td>
-
+    
         <td class="pu">
-          $<span>8500.00</span>
+          $<span>25.00</span>
         </td>
-
+    
         <td class="qty">
           <label>
             <input type="number" value="0" min="0">
           </label>
         </td>
-
+    
         <td class="subtot">
           $<span>0</span>
         </td>
-
+    
         <td class="rm">
           <button class="btn btn-delete">Delete</button>
         </td>
       </tr>
-
     </tbody>
+    <!-- <tfoot>
+      <tr class="new">
+        <td>
+          <input type="text"/>
+        </td>
+        <td>
+          <input type="number" min="0"/>
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+          <button id="create" class="btn">Create</button>
+        </td>
+      </tr>
+    </tfoot> -->
 
   </table>
 
-  <button class="btn btn-calcprices">Calculate Prices</button>
+  <p class="cta">
+    <button id="calc" class="btn btn-success">Calculate prices</button>
+  </p>
 
-  <h1 class="totalPrices">Total : $0</h1>
+  <h2>Total: $<span>0</span></h2>
 
-  <!-- Importo mi javascript al final del body  -->
-  <script src="index.js"></script>
+  <script type="text/javascript" src="./js/index.js"></script>
 </body>
-
 </html>
